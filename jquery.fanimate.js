@@ -48,11 +48,6 @@
 			rule = sheet.rules[0];
 		}
 
-		// IE<9 support
-		if (rule && !rule.parentStyleSheet) {
-			rule.parentStyleSheet = sheet;
-		}
-
 		return rule;
 	}
 
