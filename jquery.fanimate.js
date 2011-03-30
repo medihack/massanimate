@@ -10,7 +10,7 @@
 (function($) {
 	var oldCss = $.css;
 	$.css = function(elem, name, extra) {
-		if (!(elem instanceof CSSStyleRule)) {
+		if (!(elem.selectorText)) {
 			return oldCss(elem, name, extra);
 		}
 		else {
@@ -57,12 +57,17 @@
 	}
 
 	function deleteRule(rule) {
-		var parentSheet = rule.parentStyleSheet;
-		if (parentSheet.deleteRule) {
-			parentSheet.deleteRule(rule);
-		}
-		else if (parentSheet.removeRule) {
-			parentSheet.removeRule(rule);
+		var rules = sheet.cssRules || sheet.rules;
+		for (var i = 0, length = rules.length; i < length; i++) {
+			if (rules[i] === rule) {
+				if (sheet.deleteRule) {
+					sheet.deleteRule(i);
+				}
+				else if (sheet.removeRule) {
+					sheet.removeRule(i);
+				}
+				break;
+			}
 		}
 	}
 
@@ -85,10 +90,16 @@
 				return this;
 			},
 			remove: function() {
-				$.queue(rule, "fx", function(next) {
+				var queue = $.queue(rule);
+				if (queue && queue[0] === "inprogress") {
+					$.queue(rule, "fx", function(next) {
+						deleteRule(rule);
+						next();
+					});
+				}
+				else {
 					deleteRule(rule);
-					next();
-				});
+				}
 			}
 		}
 	}
