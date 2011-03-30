@@ -1,4 +1,6 @@
-# jQuery Fanimate (**Fa**st **animate**)
+# jQuery Fanimate 
+
+(**Fa**st **animate**)
 
 ## About
 
