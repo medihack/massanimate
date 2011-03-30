@@ -6,6 +6,8 @@ jQuery Fanimate is a tiny (~100 lines) but very powerful jQuery extension.
 It allows to animate hundreds of elements at once by using stylesheet rules
 (instead of animating each element style like jQuery does).
 
+[**Demo**](http://medihack.github.com/jquery-fanimate/demo.html)
+
 ## Dependencies
 
 Tested with jQuery 1.5.1, but it should work with jQuery >= 1.4.3
