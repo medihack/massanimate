@@ -1,4 +1,4 @@
-# Fanimate - is Fast Animate
+# jQuery Fanimate (**Fa**st **animate**)
 
 ## About
 
