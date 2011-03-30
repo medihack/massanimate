@@ -12,7 +12,8 @@ It allows to animate hundreds of elements at once by using stylesheet rules
 
 ## Dependencies
 
-Tested with jQuery 1.5.1, but it should work with jQuery >= 1.4.3
+It should work with jQuery >= 1.4.3. Tested with Firefox 3/4, Chrome, Opera 11, IE 7/8/9 on Windows and Linux.
+
 
 ## Usage
 
