@@ -17,13 +17,19 @@ Tested with jQuery 1.5.1, but it should work with jQuery >= 1.4.3
 Simply add a class (e.g. "fanimate") to all elements you would like to animate (this is usually pretty fast).
 Then use Fanimate like below:
 
-    $.fanimate("div.fanimate") // creates a new style rule
-	.css({width: 50, height: 50, opacity: 0}) // sets some style attributes
+    $.fanimate("div.fanimate") // creates a new empty style rule
+	.css({width: 50, height: 50, opacity: 0}) // set some initial style attributes
 	.animate({width: 100, height: 100, opacity: 1}, 2000) // animate those attributes
 	.animate({width: 50, height: 50, opacity: 0}, 2000, function() { // another animation
 		// do something afterwards
 	})
-	.remove(); // removes the added style rule
+	.remove(); // remove the added style rule and all its style attributes
+
+I hardly recommend setting the initial style attributes with the `css` method that you want to animate. You can also
+set the styles using `css` between the `animate` methods.
+
+`remove` deletes the rule after all animations are finished. After that you can't add new animations to that rule. The
+`remove` is fully optional. You can also use Fanimate to just set styles without any animations.
 
 Keep in mind that Fanimate can't animate already set element styles. This is because Fanimate uses normal style
 sheet definitions which can never override element styles.
