@@ -29,10 +29,10 @@ I hardly recommend setting the initial style attributes with the `css` method th
 set the styles using `css` between the `animate` methods.
 
 `remove` deletes the rule after all animations are finished. After that you can't add new animations to that rule. The
-`remove` is fully optional. You can also use Fanimate to just set styles without any animations.
+`remove` is optional. You can also use Fanimate to just set styles without any animations.
 
 Keep in mind that Fanimate can't animate already set element styles. This is because Fanimate uses normal style
-sheet definitions which can never override element styles.
+sheet definitions which can't override element styles (`!important` does not seem to work with jQuery animations).
 
 
 ## Credits
