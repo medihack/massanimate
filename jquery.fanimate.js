@@ -1,5 +1,5 @@
 /*
- * jQuery Fanimate, version 0.1 (2011-03-30)
+ * jQuery Fanimate, version 0.2 (2011-03-30)
  *
  * Copyright(c) 2011 Kai Schlamp
  *
@@ -8,17 +8,38 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 (function($) {
+	// hack $.css for getting styles from CSS rule
 	var oldCss = $.css;
 	$.css = function(elem, name, extra) {
 		if (!(elem.selectorText)) {
 			return oldCss(elem, name, extra);
 		}
 		else {
-			var origName = $.camelCase(name),
-			prop = $.cssProps[origName] || origName;
-			return elem.style[prop];
+			if (name == "opacity" && elem.style.filter) {
+				// use hook for IE inside jQuery
+				return oldCss(elem, name, extra);
+			}
+			else {
+				var origName = $.camelCase(name),
+				prop = $.cssProps[origName] || origName;
+				return elem.style[prop];
+			}
 		}
 	}
+
+	// hack $.data for animations in IE 7, IE 8
+	var cache = {};
+	var mediator = function(original){
+		return function (elem) {
+			var id = elem.selectorText;
+			if (id) {
+				arguments[0] = cache[id] = cache[id] || {};
+			}
+			return original.apply($, arguments);
+		};
+	};
+	$.data = mediator($.data);
+	$.removeData = mediator($.removeData);
 
 	var sheet = null;
 	$(document).ready(function() {
