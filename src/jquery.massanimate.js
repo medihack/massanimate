@@ -47,12 +47,7 @@
 		var elem = $('<style rel="mass-animate" type="text/css"></style>')
 		.appendTo($('head'))[0];
 
-		if (elem.sheet) {
-			sheet = elem.sheet;
-		}
-		else {
-			sheet = elem.styleSheet;
-		}
+		sheet = elem.sheet || elem.styleSheet;
 	});
 
 	function fetchRule(sheet, selector) {
