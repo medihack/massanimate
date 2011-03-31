@@ -1,5 +1,5 @@
 /*
- * jQuery Fanimate, version 0.2 (2011-03-30)
+ * jQuery Mass Animate, version 0.2 (2011-03-30)
  *
  * Copyright(c) 2011 Kai Schlamp
  *
@@ -44,7 +44,7 @@
 	// add additional style sheet that massanimate acts on
 	var sheet = null;
 	$(document).ready(function() {
-		var elem = $('<style rel="fanimate" type="text/css"></style>')
+		var elem = $('<style rel="mass-animate" type="text/css"></style>')
 		.appendTo($('head'))[0];
 
 		if (elem.sheet) {
@@ -106,7 +106,7 @@
 		});
 	}
 
-	$.fanimate = function(selector) {
+	$.massanimate = function(selector) {
 		var rule = fetchRule(sheet, selector);
 		if (!rule) {
 			rule = insertRule(sheet, selector);

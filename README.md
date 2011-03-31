@@ -1,14 +1,12 @@
-# jQuery Fanimate 
-
-(**Fa**st **animate**)
+# jQuery Mass Animate
 
 ## About
 
-jQuery Fanimate is a tiny (~100 lines) but very powerful jQuery extension.
+jQuery Mass Animate is a tiny (~120 lines) but very powerful jQuery extension.
 It allows to animate hundreds of elements at once by using stylesheet rules
-(instead of animating each element style like jQuery does).
+(instead of animating each element style like normally jQuery does).
 
-[**Demo**](http://medihack.github.com/jquery-fanimate/demo.html)
+[**Demo**](http://medihack.github.com/jquery-massanimate/demo/demo.html)
 
 ## Dependencies
 
@@ -17,10 +15,10 @@ It should work with jQuery >= 1.4.3. Tested with Firefox 3/4, Chrome, Opera 11, 
 
 ## Usage
 
-Simply add a class (e.g. "fanimate") to all elements you would like to animate (this is usually pretty fast).
-Then use Fanimate like below:
+Simply add a class (e.g. "mass-animate") to all elements you would like to animate (this is usually pretty fast).
+Then use `massanimate` like below:
 
-    $.fanimate("div.fanimate") // creates a new empty style rule
+    $.massanimate("div.mass-animate") // creates a new empty style rule
 	.css({width: 50, height: 50, opacity: 0}) // set some initial style attributes
 	.animate({width: 100, height: 100, opacity: 1}, 2000) // animate those attributes
 	.animate({width: 50, height: 50, opacity: 0}, 2000, function() { // another animation
@@ -32,16 +30,16 @@ I hardly recommend setting the initial style attributes with the `css` method th
 set the styles using `css` between the `animate` methods.
 
 `remove` deletes the rule after all animations are finished. After that you can't add new animations to that rule. The
-`remove` is optional. You can also use Fanimate to just set styles without any animations.
+`remove` is optional. You can also use Mass Animate to just set styles without any animations.
 
-Keep in mind that Fanimate can't animate already set element styles. This is because Fanimate uses normal style
+Keep in mind that *Mass Animate* can't animate already set element styles. This is because *Mass Animate* uses normal style
 sheet definitions which can't override element styles (`!important` does not seem to work with jQuery animations).
 
 
 ## Credits
 
 Thanks to David Tang and his very nice Javascript Stylesheet rule library [JSS](https://github.com/Box9/jss).
-Fanimate reuses some of his code to setup the CSS rules.
+*Mass Animate* reuses some of his code to setup the CSS rules.
 
 ## License
 
