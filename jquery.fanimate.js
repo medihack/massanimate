@@ -41,6 +41,7 @@
 	$.data = mediator($.data);
 	$.removeData = mediator($.removeData);
 
+	// add additional style sheet that massanimate acts on
 	var sheet = null;
 	$(document).ready(function() {
 		var elem = $('<style rel="fanimate" type="text/css"></style>')
@@ -53,6 +54,18 @@
 			sheet = elem.styleSheet;
 		}
 	});
+
+	function fetchRule(sheet, selector) {
+		var rules = sheet.cssRules || sheet.rules;
+		for (var i = 0, length = rules.length; i < length; i++) {
+			// TODO: selectorText may not be correct in IE<9
+			// as it splits selectors with ',' into multiple rules
+			if (rules[i].selectorText.toLowerCase() == selector.toLowerCase()) {
+				return rules[i];
+			}
+		}
+		return null;
+	}
 
 	function insertRule(sheet, selector) {
 		if (sheet.insertRule) {
@@ -94,7 +107,10 @@
 	}
 
 	$.fanimate = function(selector) {
-		var rule = insertRule(sheet, selector);
+		var rule = fetchRule(sheet, selector);
+		if (!rule) {
+			rule = insertRule(sheet, selector);
+		}
 
 		return {
 			css: function(name, value) {
