@@ -3,7 +3,7 @@
 ## About
 
 jQuery Mass Animate is a tiny (~120 lines) but very powerful jQuery extension.
-It allows to animate hundreds of elements at once by using stylesheet rules
+It allows to animate hundreds of elements at once and synchronously by using stylesheet rules
 (instead of animating each element style like normally jQuery does).
 
 [**Demo**](http://medihack.github.com/jquery-massanimate/demo/demo.html)
