@@ -85,14 +85,17 @@
 		equal($('div#two').width(), 0);
 	});
 
-	test("removes style after animation", function() {
-		expect(2);
+	test("removes style rule after animation", function() {
+		expect(3);
 		stop();
 		$.massanimate('.mass').css({
 			width: 100
 		}).animate({
 			width: 70
-		}, 500).remove();
+		}, 500, function() {
+			var result = this.remove();
+			ok(result);
+		});
 
 		window.setTimeout(function() {
 			equal(getRules().length, 1, "style rule present in animation");
@@ -102,6 +105,26 @@
 			equal(getRules().length, 0, "style rule removed after animation");
 			start();
 		}, 750);
+	});
+
+	test("removing style rule during animation is ignored", function() {
+		expect(3);
+		stop();
+		var massanimate = $.massanimate('.mass').css({
+			width: 100
+		}).animate({
+			width: 70
+		}, 250);
+
+		equal(getRules().length, 1);
+		var result = massanimate.remove();
+		ok(!result);
+		equal(getRules().length, 1);
+
+		window.setTimeout(function() {
+			start();
+			massanimate.remove(); // cleanup
+		}, 500);
 	});
 	
 	test("does not insert style rule if already preset", function() {

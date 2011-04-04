@@ -1,5 +1,5 @@
 /*
- * jQuery Mass Animate, version 0.2 (2011-03-30)
+ * jQuery Mass Animate, version 0.3 (2011-03-30)
  *
  * Copyright(c) 2011 Kai Schlamp
  *
@@ -113,20 +113,38 @@
 				return this;
 			},
 			animate: function(properties, duration, easing, callback) {
-				$.fn.animate.call($(rule), properties, duration, easing, callback);
+				var self = this;
+
+				var opt = duration && typeof duration === "object" ? $.extend({}, duration) : {
+					callback: callback || !callback && easing ||
+						$.isFunction(duration) && duration,
+					duration: duration,
+					easing: callback && easing || easing && !$.isFunction(easing) && easing
+				};
+
+				$.fn.animate.call($(rule), properties, opt.duration, opt.easing, function() {
+					if (opt.callback && $.isFunction(opt.callback)) {
+						opt.callback.apply(self, arguments);
+					}
+				});
+
 				return this;
 			},
 			remove: function() {
 				var queue = $.queue(rule);
 				if (queue && queue[0] === "inprogress") {
+					/* TODO: not working, see issue #1.
+					   Just ignore the remove now when an animation is in progress.
 					$.queue(rule, "fx", function(next) {
 						deleteRule(rule);
 						next();
-					});
+					}); */
 				}
 				else {
 					deleteRule(rule);
+					return true;
 				}
+				return false;
 			}
 		}
 	}

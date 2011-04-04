@@ -2,7 +2,7 @@
 
 ## About
 
-jQuery Mass Animate is a tiny (~120 lines) but very powerful jQuery extension.
+jQuery Mass Animate is a tiny but very powerful jQuery extension.
 It allows to animate hundreds of elements at once and synchronously by using stylesheet rules
 (instead of animating each element style like normally jQuery does).
 
@@ -23,14 +23,18 @@ Then use `massanimate` like below:
 	.animate({width: 100, height: 100, opacity: 1}, 2000) // animate those attributes
 	.animate({width: 50, height: 50, opacity: 0}, 2000, function() { // another animation
 		// do something afterwards
-	})
-	.remove(); // remove the added style rule and all its style attributes
+		// `this` is the massanimate object
+		this.remove(); // remove the added style rule and all its style attributes
+	});
 
 I hardly recommend setting the initial style attributes with the `css` method that you want to animate. You can also
 set the styles using `css` between the `animate` methods.
 
-`remove` deletes the rule after all animations are finished. After that you can't add new animations to that rule. The
-`remove` is optional. You can also use Mass Animate to just set styles without any animations.
+`remove` deletes the rule again. After that you can't add new animations to that rule. `remove` is best called in a callback
+when the animation is finished (like in the example above). A successful `remove` returns true. When `remove` is called while
+an animation of this rule is still in progress then it is ignored and false is returned.
+
+The `remove` is optional. You can also use Mass Animate to just set styles without any animations.
 
 Keep in mind that *Mass Animate* can't animate already set element styles. This is because *Mass Animate* uses normal style
 sheet definitions which can't override element styles (`!important` does not seem to work with jQuery animations).
