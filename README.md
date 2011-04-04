@@ -22,8 +22,9 @@ Then use `massanimate` like below:
 	.css({width: 50, height: 50, opacity: 0}) // set some initial style attributes
 	.animate({width: 100, height: 100, opacity: 1}, 2000) // animate those attributes
 	.animate({width: 50, height: 50, opacity: 0}, 2000, function() { // another animation
-		// do something afterwards
 		// `this` is the massanimate object
+		// do something afterwards
+		var rule = this.rule(); // access the style rule (returns a CSSStyleRule object)
 		this.remove(); // remove the added style rule and all its style attributes
 	});
 

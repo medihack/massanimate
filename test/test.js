@@ -147,4 +147,10 @@
 		equal($('div#two').css('opacity'), 0.5);
 	});
 
+	test("access the style rule", function() {
+		expect(1);
+		var rule = $.massanimate('.mass').rule();
+		ok(rule instanceof CSSStyleRule);
+	});
+
 })(jQuery);

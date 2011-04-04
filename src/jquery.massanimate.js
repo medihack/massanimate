@@ -1,5 +1,5 @@
 /*
- * jQuery Mass Animate, version 0.3 (2011-03-30)
+ * jQuery Mass Animate, version 0.3.1 (2011-03-30)
  *
  * Copyright(c) 2011 Kai Schlamp
  *
@@ -108,6 +108,9 @@
 		}
 
 		return {
+			rule: function() {
+				return rule;
+			},
 			css: function(name, value) {
 				setStyle(rule, name, value);
 				return this;
